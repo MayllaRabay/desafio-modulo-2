@@ -6,6 +6,11 @@
 
   body {
     background-color: var(--color-grey-500);
+    color: var(--color-white-50);
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -14,4 +19,7 @@
   --color-grey-500: #1D2226;
   --color-grey-800: #171B1E;
   --color-blue-800: #0F1C26;
+  --color-purple-200: #A785ED;
+  --color-yellow-200: #FBCD6E;
+  --color-pink-200: #E25EBF;
 }
