@@ -1,6 +1,7 @@
 import bagIcon from './assets/images/bag.svg';
 import starIcon from './assets/images/golden-star.svg';
 import logoIcon from './assets/images/logo.svg';
+import personIcon from './assets/images/person-illustration.svg';
 import searchIcon from './assets/images/search-icon.svg';
 import userIcon from './assets/images/user.png';
 import Movies from './data.js';
@@ -58,7 +59,7 @@ function App() {
                   </div>
                   <button className={styles.film__button}>
                     <span>Sacola</span>
-                    <span>R${movie.price}</span>
+                    <span>R$ {movie.price}</span>
                   </button>
                 </div>
               </div>
@@ -72,12 +73,18 @@ function App() {
             <span>Sacola</span>
           </div>
           <div className={styles.bag__main}>
-            
+            <div className={styles.empty__bag}>
+              <h2>Sua sacola está vazia</h2>
+              <h4>Adicione filmes agora</h4>
+              <img src={personIcon} alt="" />
+            </div>
+            <div className={styles.content__bag} hidden>
+              <button>
+                <span>Confirme seus dados</span>
+                <span>R$ {}</span>
+              </button>
+            </div>
           </div>
-          <button>
-            <span>Confirme seus dados</span>
-            <span>R${}</span>
-          </button>
         </div>
       </div>
     </>

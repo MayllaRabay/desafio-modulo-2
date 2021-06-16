@@ -12,6 +12,10 @@
   h1 {
     margin-bottom: 1.5rem;
   }
+
+  h2, h4 {
+    margin-bottom: 0.5rem;
+  }
 }
 
 :root {
@@ -20,6 +24,7 @@
   --color-grey-800: #171B1E;
   --color-blue-800: #0F1C26;
   --color-purple-200: #A785ED;
+  --color-purple-500: #7c5db9;
   --color-yellow-200: #FBCD6E;
   --color-pink-200: #E25EBF;
 }
