@@ -1,1 +1,17 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  padding: 0;
 
+  body {
+    background-color: var(--color-grey-500);
+  }
+}
+
+:root {
+  --color-white-50: #FDFDFD;
+  --color-grey-500: #1D2226;
+  --color-grey-800: #171B1E;
+  --color-blue-800: #0F1C26;
+}

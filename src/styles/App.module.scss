@@ -1,6 +1,49 @@
 .main__container {
-  background-color: #dddd;
-    h1 {
-      color: palevioletred;
+  height: 100vh;
+
+  .header__wrapper {
+    align-items: center;
+    background-color: var(--color-blue-800);
+    color: var(--color-white-50);
+    column-gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 6rem;
+    position: sticky;
+    row-gap: 3rem;
+    top: 0;
+    
+    form {
+      display: flex;
+      align-items: center;
+      column-gap: 3rem;
+      justify-content: center;
+      position: relative;
     }
+
+    input {
+      background-color: var(--color-grey-800);
+      padding: 1rem;
+    }
+
+    .search__icon {
+      position: absolute;
+      right: 1rem;
+    }
+
+    .user__info {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: center;
+      margin-left: auto;
+
+      img {
+        border-radius: 50%;
+        margin-left: 1rem;
+      }
+    }
+  }
 }
