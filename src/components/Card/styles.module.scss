@@ -1,0 +1,51 @@
+.film__card {
+  background-blend-mode: darken;
+  background-size: cover;
+  height: 301px;
+  position: relative;
+  width: 168px;
+  
+  .film__info__wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    font-weight: 700;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 0.5rem;
+    width: 100%;
+
+    .film__info {
+      display: flex;
+      align-items: center;
+      color: var(--color-white-50);
+      justify-content: space-between;
+      margin: 0 0.3rem;
+
+      .film__vote {
+        color: var(--color-yellow-200);
+        display: flex;
+        flex-wrap: nowrap;
+        font-size: 0.8rem;
+        gap: 0.2rem;
+      }
+    }
+
+    button {
+      background-color: var(--color-purple-200);
+      border: none;
+      color: var(--color-white-50);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      justify-content: space-between;
+      padding: 0.5rem;
+      width: 100%;
+
+      &:hover {
+        background-color: var(--color-purple-500);
+      }
+    }
+  }
+}
