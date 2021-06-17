@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 function Card({ movie }) {
 
   const backgroundCard = {
-    background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)), url(${movie.poster_path}) center/cover`
+    background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)), url(${movie.poster}) center/cover`
   };
 
   return (
@@ -14,7 +14,7 @@ function Card({ movie }) {
           <span>{movie.title}</span>
           <span className={styles.film__vote}>
             <img src={starIcon} alt="" />
-            {movie.vote_average}
+            {movie.vote}
           </span>
         </div>
         <button>

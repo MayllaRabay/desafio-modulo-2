@@ -2,7 +2,7 @@ import bagIcon from '../../assets/images/bag.svg';
 import personIcon from '../../assets/images/person-illustration.svg';
 import styles from './styles.module.scss';
 
-function ShoppingCart({ list }) {
+function ShoppingCart({ movies }) {
   return (
     <div className={styles.bag__wrapper}>
       <header>
@@ -10,7 +10,7 @@ function ShoppingCart({ list }) {
         <span>Sacola</span>
       </header>
       <main>
-        {!list ? (
+        {!movies ? (
           <div className={styles.empty__bag}>
             <h2>Sua sacola está vazia</h2>
             <h4>Adicione filmes agora</h4>
