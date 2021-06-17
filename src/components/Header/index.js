@@ -3,12 +3,12 @@ import searchIcon from '../../assets/images/search-icon.svg';
 import userIcon from '../../assets/images/user.png';
 import styles from './styles.module.scss';
 
-function Header() {
+function Header({ handleSubmit }) {
   return (
     <div className={styles.header__wrapper}>
         <form>
           <img src={logoIcon} alt="" />
-          <input type="text" placeholder="Pesquise filmes..." />
+          <input type="text" onChange={e => handleSubmit(e)} placeholder="Pesquise filmes..." />
           <img className={styles.search__icon} src={searchIcon} alt="" />
         </form>
         <div className={styles.user__info}>

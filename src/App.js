@@ -6,15 +6,31 @@ import styles from './styles/App.module.scss';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [searchMovies, setSearchMovies] = useState('');
 
   useEffect(() => {
     getMovies();
   }, []);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const localMovies = [...movies];
+    const searchedMovies = [];
+
+    for (const movie of localMovies) {
+      if(((movie.title).toLowerCase()).includes((e.target.value).toLowerCase())) {
+        searchedMovies.push(movie);
+      };
+    }
+
+    setSearchMovies(searchedMovies);
+  }
+
   async function getMovies() {
     const response = await fetch('https://tmdb-proxy-workers.vhfmag.workers.dev/3/discover/movie?language=pt-BR');
     const { results } = await response.json();
-
+    
     const formattedData = [];
 
     for (const movie of results) {
@@ -32,7 +48,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header handleSubmit={handleSubmit} />
       <div className={styles.main__wrapper}>
         <div className={styles.films__wrapper}>
 
@@ -43,7 +59,8 @@ function App() {
           
           <h1>Filmes</h1>
           <div className={styles.films__cards}>
-            {movies.map(movie => <Card movie={movie} key={movie.id} />)}
+            {searchMovies.length === 0 ? movies.map(movie => <Card movie={movie} key={movie.id} />) 
+            : searchMovies.map(movie => <Card movie={movie} key={movie.id} />)} 
           </div>
           
         </div>

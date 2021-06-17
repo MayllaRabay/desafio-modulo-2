@@ -10,20 +10,20 @@ function ShoppingCart({ movies }) {
         <span>Sacola</span>
       </header>
       <main>
-        {!movies ? (
+
           <div className={styles.empty__bag}>
             <h2>Sua sacola está vazia</h2>
             <h4>Adicione filmes agora</h4>
             <img src={personIcon} alt="" />
           </div>
-        ) : (
-          <div className={styles.content__bag}>
+
+          <div className={styles.content__bag} hidden>
             <button>
               <span>Confirme seus dados</span>
               <span>R$ {}</span>
             </button>
           </div>
-        )}
+          
       </main>
     </div>
   );
