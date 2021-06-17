@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Create, innovate, inspire, code and test like a girl!" title="#MeuBanner" src="./public/banner.png" />
+  <img alt="Create, innovate, inspire, code and test like a girl!" title="#MeuBanner" src="./banner.png" />
 </h1>
 
 <h2 align="center"> 
