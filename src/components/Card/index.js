@@ -1,7 +1,7 @@
 import starIcon from '../../assets/images/golden-star.svg';
 import styles from './styles.module.scss';
 
-function Card({ movie }) {
+function Card({ movie, handleAddToCart }) {
 
   const backgroundCard = {
     background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)), url(${movie.poster}) center/cover`
@@ -17,7 +17,7 @@ function Card({ movie }) {
             {movie.vote}
           </span>
         </div>
-        <button>
+        <button onClick={() => handleAddToCart(movie.id)}>
           <span>Sacola</span>
           <span>R$ {movie.price}</span>
         </button>
