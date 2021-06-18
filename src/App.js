@@ -25,7 +25,8 @@ function App() {
         title: movie.title,
         poster: movie.poster_path,
         vote: movie.vote_average,
-        price: (movie.price).toFixed(2).replace('.' , ',')
+        price: (movie.price).toFixed(2).replace('.' , ','),
+        qtd: 1
       });
     }
     
@@ -49,14 +50,39 @@ function App() {
 
   function handleAddToCart(movieId) {
     const localMovies = [...movies];
+    let alreadyAdded = false
+
+    for (const movieCart of addToCart) {
+      if(movieCart.id === movieId) {
+        alreadyAdded = true;
+      };
+    }
 
     for (const movie of localMovies) {
-      if(movie.id === movieId) {
+      if(movie.id === movieId && alreadyAdded) {
+        movie.qtd++;
+      } else if(movie.id === movieId && !alreadyAdded) {
         addToCart.push(movie);
       };
     }
-    
     setAddToCart([...addToCart]);
+  }
+
+  function handleMovieAmount(value, movieId) {
+    const localMovies = [...addToCart];
+
+    const index = localMovies.findIndex(movie => movie.id === movieId);
+
+    if(index === -1) return;
+
+    const newAmount = localMovies[index].qtd + value;
+    if(newAmount > 0) {
+      localMovies[index].qtd = newAmount;
+    } else if(newAmount === 0) {
+      localMovies.splice(index, 1)
+    };
+
+    setAddToCart([...localMovies]);
   }
 
   return (
@@ -77,7 +103,7 @@ function App() {
           </div>
           
         </div>
-        <ShoppingCart addToCart={addToCart} />
+        <ShoppingCart addToCart={addToCart} handleMovieAmount={handleMovieAmount} />
       </div>
     </>
   );

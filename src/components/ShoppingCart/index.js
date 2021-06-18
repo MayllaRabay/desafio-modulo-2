@@ -5,9 +5,18 @@ import plusIcon from '../../assets/images/plus-icon.svg';
 import trashIcon from '../../assets/images/trash-icon.svg';
 import styles from './styles.module.scss';
 
-function ShoppingCart({ addToCart, handleIncreaseAmount, handleDecreaseAmount }) {
-  let value = 1;
-  
+function ShoppingCart({ addToCart, handleMovieAmount }) {
+  let totalPrice = 0
+
+  for(let i = 0; i < addToCart.length; i++) {
+    let price = addToCart[i].price;
+    let qtd = addToCart[i].qtd;
+
+    let formattedPrice = parseFloat(price.replace(',' , '.'));
+
+    totalPrice += (formattedPrice * qtd);
+  }
+
   return (
     <div className={styles.bag__wrapper}>
       <header>
@@ -23,7 +32,7 @@ function ShoppingCart({ addToCart, handleIncreaseAmount, handleDecreaseAmount })
           </div>
         ) : (
           addToCart.map(movie => (
-            <div className={styles.content__bag} key={movie.id + 'bag'}>
+            <div className={styles.content__bag} key={movie.id}>
               <div className={styles.info__wrapper}>
                 <img src={movie.poster} alt="" width="43px" height="67px" />
                 <div className={styles.movie__info}>
@@ -32,12 +41,12 @@ function ShoppingCart({ addToCart, handleIncreaseAmount, handleDecreaseAmount })
                 </div>
               </div>
               <div className={styles.shopping__wrapper}>
-                <button className={styles.shopping__buttons}>
+                <button onClick={() => handleMovieAmount(1, movie.id)} className={styles.shopping__buttons}>
                   <img src={plusIcon} alt="" />
                 </button>
-                <span>{value}</span>
-                <button className={styles.shopping__buttons}>
-                  <img src={value === 1 ? trashIcon : minusIcon} alt="" />
+                <span>{movie.qtd}</span>
+                <button onClick={() => handleMovieAmount(-1, movie.id)} className={styles.shopping__buttons}>
+                  <img src={movie.qtd === 1 ? trashIcon : minusIcon} alt="" />
                 </button>
               </div>
             </div>
@@ -46,7 +55,7 @@ function ShoppingCart({ addToCart, handleIncreaseAmount, handleDecreaseAmount })
         {addToCart.length > 0 && (
           <div className={styles.buy__button}>
             <span>Confirme seus dados</span>
-            <span>R$</span>
+            <span>R$ {totalPrice.toFixed(2).replace('.' , ',')}</span>
           </div>
         )} 
       </main>
