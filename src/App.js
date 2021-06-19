@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import ShoppingCart from './components/ShoppingCart';
@@ -14,9 +14,6 @@ function App() {
   useEffect(() => {
     getMovies();
   }, []);
-
-  const contentMovies = useRef();
-  console.log(contentMovies);
 
   async function getMovies() {
     setErros();
@@ -49,7 +46,7 @@ function App() {
     setCarregando(false);
   }
 
-  function handleSubmit(e) {
+  function handleSearch(e) {
     e.preventDefault();
 
     const localMovies = [...movies];
@@ -101,7 +98,7 @@ function App() {
 
   return (
     <>
-      <Header handleSubmit={handleSubmit} />
+      <Header handleSearch={handleSearch} />
       <div className={styles.main__wrapper}>
         {erros &&
           <div className={styles.error__message}>
