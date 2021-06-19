@@ -3,10 +3,21 @@
   display: flex;
   flex-flow: column nowrap;
   flex-shrink: 0;
-  height: fit-content;
+  margin-left: auto;
+  max-height: 70vh;
+  overflow: auto;
   position: sticky;
   top: 9rem;
   width: 19.5rem;
+
+  &::-webkit-scrollbar {
+    width: 0.4rem
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-purple-500);
+    border-radius: 5px;
+  }
 
   header {
     background-color: var(--color-purple-200);
@@ -29,11 +40,16 @@
     
     .empty__bag {
       text-align: center;
+
+      img {
+        margin-top: 1.5rem;
+      }
     }
 
     .content__bag {
       display: flex;
       align-items: center;
+      column-gap: 1rem;
       justify-content: space-between;
       margin-bottom: 1rem;
 
@@ -57,13 +73,23 @@
         gap: 0.5rem;
       }
 
-      .shopping__buttons {
+      .shopping__button {
         background-color: black;
         border: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
 
         &:hover {
-          background-color: rgba(0, 0, 0, 0.2);
+          background: linear-gradient(0deg, var(--color-medium-opaque-grey), 
+                                            var(--color-medium-opaque-grey)), 
+                                            var(--color-purple-200);
+        }
+
+        &:active {
+          background: linear-gradient(0deg, var(--color-lower-opaque-grey), 
+                                            var(--color-lower-opaque-grey)), 
+                                            var(--color-purple-200);
         }
       }
     }
@@ -72,17 +98,27 @@
       background-color: var(--color-pink-200);
       border:none;
       color: var(--color-white-50);
+      cursor: pointer;
       display: flex;
       align-items: center;
       font-weight: 700;
       justify-content: space-between;
+      margin-top: 1.5rem;
       padding: 0.8rem;
       width: 100%;
 
       &:hover {
-        background: linear-gradient(0deg, var(--color-low-opaque-pink), var(--color-low-opaque-pink)), var(--color-pink-50);
+        background: linear-gradient(0deg, var(--color-low-opaque-pink), 
+                                          var(--color-low-opaque-pink)), 
+                                          var(--color-pink-50);
         box-shadow: 0px 16px 24px -12px var(--color-low-opaque-purple);
-        cursor: pointer;
+      }
+
+      &:active {
+        background: linear-gradient(0deg, var(--color-medium-opaque-pink), 
+                                          var(--color-medium-opaque-pink)), 
+                                          var(--color-pink-50);
+        box-shadow: 0px 16px 24px -12px var(--color-medium-opaque-purple);
       }
     }
   }

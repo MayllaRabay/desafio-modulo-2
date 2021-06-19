@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import ShoppingCart from './components/ShoppingCart';
@@ -8,29 +8,45 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [searchMovies, setSearchMovies] = useState('');
   const [addToCart, setAddToCart] = useState([]);
+  const [carregando, setCarregando] = useState(false);
+  const [erros, setErros] = useState('');
 
   useEffect(() => {
     getMovies();
   }, []);
 
+  const contentMovies = useRef();
+  console.log(contentMovies);
+
   async function getMovies() {
-    const response = await fetch('https://tmdb-proxy-workers.vhfmag.workers.dev/3/discover/movie?language=pt-BR');
-    const { results } = await response.json();
-    
-    const formattedData = [];
-    
-    for (const movie of results) {
-      formattedData.push({
-        id: movie.id,
-        title: movie.title,
-        poster: movie.poster_path,
-        vote: movie.vote_average,
-        price: (movie.price).toFixed(2).replace('.' , ','),
-        qtd: 1
-      });
+    setErros();
+    setCarregando(true);
+
+    try {
+      const response = await fetch('https://tmdb-proxy-workers.vhfmag.workers.dev/3/discover/movie?language=pt-BR');
+      const { results } = await response.json();
+      
+      const formattedData = [];
+      
+      for (const movie of results) {
+        formattedData.push({
+          id: movie.id,
+          title: movie.title,
+          poster: movie.poster_path,
+          vote: movie.vote_average,
+          price: (movie.price).toFixed(2).replace('.' , ','),
+          synopsis: movie.overview,
+          qtd: 1
+        });
+      }
+      setMovies(formattedData);
+      
+    } catch (error) {
+      setErros(error.message);
+      setMovies([]);
     }
-    
-    setMovies(formattedData);
+
+    setCarregando(false);
   }
 
   function handleSubmit(e) {
@@ -44,13 +60,12 @@ function App() {
         searchedMovies.push(movie);
       };
     }
-
     setSearchMovies(searchedMovies);
   }
 
   function handleAddToCart(movieId) {
     const localMovies = [...movies];
-    let alreadyAdded = false
+    let alreadyAdded = false;
 
     for (const movieCart of addToCart) {
       if(movieCart.id === movieId) {
@@ -70,7 +85,6 @@ function App() {
 
   function handleMovieAmount(value, movieId) {
     const localMovies = [...addToCart];
-
     const index = localMovies.findIndex(movie => movie.id === movieId);
 
     if(index === -1) return;
@@ -89,20 +103,33 @@ function App() {
     <>
       <Header handleSubmit={handleSubmit} />
       <div className={styles.main__wrapper}>
-        <div className={styles.films__wrapper}>
+        {erros &&
+          <div className={styles.error__message}>
+            <h2>Algo deu errado ):</h2>
+            <span>erro: "{erros}"</span>
+          </div>
+        }
+        
+        {carregando ? (
+          <div className={styles.loading__message}>
+            <span>Carregando...</span>
+          </div>
+          ) : (
+          <div className={styles.films__wrapper}>
 
-          <h1>Top filmes</h1>
-          <div className={styles.films__cards}>
-            {(movies.slice(0, 5)).map(movie => <Card movie={movie} key={movie.id + 'top'} handleAddToCart={handleAddToCart} />)}
-          </div>
+            <h1>{erros ? '' : 'Top filmes'}</h1>
+            <div className={styles.films__cards}>
+              {(movies.slice(0, 5)).map(movie => <Card movie={movie} key={movie.id + 'top'} handleAddToCart={handleAddToCart} />)}
+            </div>
+            
+            <h1>{erros ? '' : 'Filmes'}</h1>
+            <div className={styles.films__cards}>
+              {searchMovies.length === 0 ? movies.map(movie => <Card movie={movie} key={movie.id} handleAddToCart={handleAddToCart} />) 
+              : searchMovies.map(movie => <Card movie={movie} key={movie.id} handleAddToCart={handleAddToCart} />)} 
+            </div>
           
-          <h1>Filmes</h1>
-          <div className={styles.films__cards}>
-            {searchMovies.length === 0 ? movies.map(movie => <Card movie={movie} key={movie.id} />) 
-            : searchMovies.map(movie => <Card movie={movie} key={movie.id} handleAddToCart={handleAddToCart} />)} 
           </div>
-          
-        </div>
+        )}
         <ShoppingCart addToCart={addToCart} handleMovieAmount={handleMovieAmount} />
       </div>
     </>

@@ -9,6 +9,7 @@ function Card({ movie, handleAddToCart }) {
 
   return (
     <div className={styles.film__card} style={backgroundCard}>
+      <div className={styles.film__sinopse}>{movie.synopsis}</div>
       <div className={styles.film__info__wrapper}>
         <div className={styles.film__info}>
           <span>{movie.title}</span>
@@ -17,7 +18,7 @@ function Card({ movie, handleAddToCart }) {
             {movie.vote}
           </span>
         </div>
-        <button onClick={() => handleAddToCart(movie.id)}>
+        <button onClick={() => handleAddToCart(movie.id)} aria-label="Adicionar à sacola">
           <span>Sacola</span>
           <span>R$ {movie.price}</span>
         </button>

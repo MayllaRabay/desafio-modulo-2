@@ -1,9 +1,44 @@
 .film__card {
   background-blend-mode: darken;
   background-size: cover;
+  cursor: pointer;
   height: 301px;
+  overflow: hidden;
   position: relative;
   width: 168px;
+
+  .film__sinopse {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--color-white-50);    
+    font-size: 0.9rem;
+    height: 86.5%;
+    opacity: 0;
+    overflow: auto;
+    padding: 0.6rem 0.3rem;
+    position: absolute;
+    top: -30%;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    z-index: 2;
+
+    &::-webkit-scrollbar {
+      width: 0.2rem
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-purple-500);
+      border-radius: 5px;
+    }
+  }
+
+  &:hover .film__sinopse {
+    opacity: 1;
+    top: 0;
+  }
   
   .film__info__wrapper {
     display: flex;
@@ -20,6 +55,7 @@
       color: var(--color-white-50);
       justify-content: space-between;
       margin: 0 0.3rem;
+      z-index: 1;
 
       .film__vote {
         color: var(--color-yellow-200);
@@ -29,23 +65,26 @@
         gap: 0.2rem;
       }
     }
+  }
 
-    button {
-      background-color: var(--color-purple-200);
-      border: none;
-      color: var(--color-white-50);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      justify-content: space-between;
-      padding: 0.5rem;
-      width: 100%;
+  button {
+    background-color: var(--color-purple-200);
+    border: none;
+    color: var(--color-white-50);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    justify-content: space-between;
+    padding: 0.5rem;
+    width: 100%;
+    z-index: 3;
 
-      &:hover {
-        background: linear-gradient(0deg, var(--color-low-opaque-grey), var(--color-low-opaque-grey)), var(--color-purple-200);
-      }
+    &:hover {
+      background: linear-gradient(0deg, var(--color-low-opaque-grey), 
+                                        var(--color-low-opaque-grey)), 
+                                        var(--color-purple-200);
     }
   }
 }

@@ -7,13 +7,13 @@ function Header({ handleSubmit }) {
   return (
     <div className={styles.header__wrapper}>
         <form>
-          <img src={logoIcon} alt="" />
-          <input type="text" onChange={e => handleSubmit(e)} placeholder="Pesquise filmes..." />
+          <img src={logoIcon} alt="Logo" />
+          <input onChange={e => handleSubmit(e)} type="text" placeholder="Pesquise filmes..." aria-labelledby="Pesquise filmes..." />
           <img className={styles.search__icon} src={searchIcon} alt="" />
         </form>
         <div className={styles.user__info}>
           <span>Bem vindo Link!</span>
-          <img src={userIcon} alt="" width="50px" />
+          <img src={userIcon} alt="User" width="50px" />
         </div>
     </div>
   );
