@@ -3,7 +3,7 @@
 </h1>
 
 <h2 align="center"> 
-	🚧 Desafio Cubos Academy - módulo 2 🚀 em andamento... 🚧
+	🚀 Desafio Cubos Academy - módulo 2 🚀
 </h2>
 
 ## 💻 Sobre o projeto
